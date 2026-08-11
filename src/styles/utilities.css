@@ -1,0 +1,126 @@
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .card-elevated {
+    @apply rounded-lg border border-border bg-card;
+  }
+
+  .card-interactive {
+    @apply rounded-lg border border-border bg-card transition-colors;
+  }
+
+  .card-interactive:active {
+    @apply bg-secondary/60;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .card-interactive:hover {
+      @apply border-stone-400 bg-card;
+    }
+  }
+
+  .gradient-primary {
+    @apply bg-primary;
+  }
+
+  .font-data {
+    @apply font-mono tabular-nums tracking-tight;
+  }
+
+  .section-pad {
+    @apply py-14 sm:py-20;
+  }
+
+  .heading-display {
+    @apply text-balance text-[2rem] font-semibold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl;
+  }
+
+  .heading-section {
+    @apply text-balance text-2xl font-semibold tracking-tight sm:text-3xl;
+  }
+
+  .text-body {
+    @apply text-[0.9375rem] leading-relaxed text-muted-foreground sm:text-base;
+  }
+
+  .rule {
+    @apply border-t border-border;
+  }
+
+  .label-caps {
+    @apply text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground;
+  }
+
+  .touch-target {
+    @apply min-h-11 min-w-11;
+  }
+
+  .safe-bottom {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .safe-top {
+    padding-top: max(0rem, env(safe-area-inset-top, 0px));
+  }
+
+  .pb-nav {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  @media (min-width: 1024px) {
+    .pb-nav {
+      padding-bottom: 0;
+    }
+  }
+
+  .sticky-cta {
+    @apply fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background px-4 py-3;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .pressable {
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .pressable:active {
+    opacity: 0.92;
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .snap-x-mobile {
+    @apply flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1;
+    scrollbar-width: none;
+  }
+
+  .snap-x-mobile::-webkit-scrollbar {
+    display: none;
+  }
+
+  .snap-x-mobile > * {
+    @apply w-[min(88vw,19rem)] shrink-0 snap-start;
+  }
+
+  @media (min-width: 640px) {
+    .snap-x-mobile {
+      @apply grid w-full snap-none gap-4 overflow-visible pb-0;
+    }
+
+    .snap-x-mobile > * {
+      @apply w-auto min-w-0;
+    }
+  }
+}
