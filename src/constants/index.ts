@@ -63,4 +63,12 @@ export const LOAD_STATUS = {
   cancelled: 'Cancelada',
 } as const
 
+export const TRACKING_STATUS = {
+  accepted: 'Motorista aceito',
+  pickup_scheduled: 'Coleta agendada',
+  collected: 'Coletado',
+  in_transit: 'Em trânsito',
+  delivered: 'Entregue',
+} as const
+
 export const PAGE_SIZE = 12

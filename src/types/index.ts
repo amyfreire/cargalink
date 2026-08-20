@@ -183,3 +183,21 @@ export interface MapMarker {
   label: string
   type: 'origin' | 'destination' | 'driver'
 }
+
+export interface ApplicationWithDriver extends Application {
+  driver: Pick<Driver, 'full_name' | 'city' | 'state' | 'rating_avg' | 'rating_count'>
+}
+
+export type TrackingStatus =
+  | 'accepted'
+  | 'pickup_scheduled'
+  | 'collected'
+  | 'in_transit'
+  | 'delivered'
+
+export interface TrackingEvent extends BaseEntity {
+  load_id: string
+  status: TrackingStatus
+  description: string
+  location: string | null
+}
