@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Combobox } from '@/components/ui/combobox'
+import { Separator } from '@/components/ui/separator'
 import { companySchema, type CompanyInput } from '@/lib/validations'
 import { BRAZILIAN_STATE_OPTIONS } from '@/constants'
 import { toast } from 'sonner'
@@ -93,6 +94,12 @@ export function CompanyPage() {
                 {...register('phone')}
               />
             </div>
+
+            <div className="sm:col-span-2">
+              <Separator className="my-2" />
+              <h3 className="mt-4 text-sm font-semibold text-foreground">Endereço</h3>
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="zipCode">CEP</Label>
               <Input
@@ -144,6 +151,7 @@ export function CompanyPage() {
                 <p className="text-xs text-destructive">{errors.state.message}</p>
               ) : null}
             </div>
+
             <div className="sm:col-span-2">
               <Button type="submit" disabled={isSubmitting}>
                 Salvar empresa
