@@ -39,6 +39,8 @@ export const companySchema = z.object({
   tradeName: z.string().min(2, 'Nome fantasia obrigatório'),
   document: z.string().min(14, 'CNPJ inválido'),
   phone: z.string().min(10, 'Telefone inválido'),
+  zipCode: z.string().min(8, 'CEP inválido'),
+  address: z.string().min(3, 'Endereço obrigatório'),
   city: z.string().min(2, 'Cidade obrigatória'),
   state: z.string().length(2, 'UF inválida'),
 })

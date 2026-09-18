@@ -5,15 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { Combobox } from '@/components/ui/combobox'
 import { companySchema, type CompanyInput } from '@/lib/validations'
-import { BRAZILIAN_STATES } from '@/constants'
+import { BRAZILIAN_STATE_OPTIONS } from '@/constants'
 import { toast } from 'sonner'
 
 export function CompanyPage() {
@@ -30,6 +24,8 @@ export function CompanyPage() {
       tradeName: 'AgroSul',
       document: '12.345.678/0001-90',
       phone: '(11) 4000-1234',
+      zipCode: '01310-100',
+      address: 'Av. Paulista, 1000',
       city: 'São Paulo',
       state: 'SP',
     },
@@ -98,6 +94,32 @@ export function CompanyPage() {
               />
             </div>
             <div className="space-y-2">
+              <Label htmlFor="zipCode">CEP</Label>
+              <Input
+                id="zipCode"
+                placeholder="00000-000"
+                aria-label="CEP"
+                autoComplete="postal-code"
+                {...register('zipCode')}
+              />
+              {errors.zipCode ? (
+                <p className="text-xs text-destructive">{errors.zipCode.message}</p>
+              ) : null}
+            </div>
+            <div className="space-y-2 sm:col-span-2">
+              <Label htmlFor="address">Endereço</Label>
+              <Input
+                id="address"
+                placeholder="Rua, número, bairro"
+                aria-label="Endereço"
+                autoComplete="street-address"
+                {...register('address')}
+              />
+              {errors.address ? (
+                <p className="text-xs text-destructive">{errors.address.message}</p>
+              ) : null}
+            </div>
+            <div className="space-y-2">
               <Label htmlFor="city">Cidade</Label>
               <Input
                 id="city"
@@ -109,21 +131,18 @@ export function CompanyPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="state">UF</Label>
-              <Select
+              <Combobox
+                id="state"
+                aria-label="Estado"
+                options={BRAZILIAN_STATE_OPTIONS.map((s) => ({ value: s.value, label: `${s.label} (${s.value})` }))}
                 value={watch('state')}
                 onValueChange={(v) => setValue('state', v, { shouldValidate: true })}
-              >
-                <SelectTrigger id="state" aria-label="Estado">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {BRAZILIAN_STATES.map((uf) => (
-                    <SelectItem key={uf} value={uf}>
-                      {uf}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                placeholder="Selecione o estado"
+                searchPlaceholder="Buscar estado..."
+              />
+              {errors.state ? (
+                <p className="text-xs text-destructive">{errors.state.message}</p>
+              ) : null}
             </div>
             <div className="sm:col-span-2">
               <Button type="submit" disabled={isSubmitting}>
